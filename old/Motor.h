@@ -9,7 +9,7 @@ class MOTOR
     int A1, A2, _PWMA, STB, B1, B2, _PWMB,_limit;
     
     int constrainSpeed(int val){
-      return constrain(val,0,_limit);
+      return constrain(val, 0, _limit == 0 ? 255 : _limit);  // Fallback to 255
     }
 
   public:
@@ -43,7 +43,7 @@ class MOTOR
     {
       digitalWrite(A1,HIGH);
       digitalWrite(A2,LOW);
-      analogWrite(_PWMA, constrainSpeed(speed)); // Set constrain on speed. The logic in orivate class
+      analogWrite(_PWMA, constrainSpeed(speed)); // Set constrain on speed. The logic in private class
     }
     
     void reverseA(int speed)
